@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/vegitation_pack/pine_a.dae" type="PackedScene" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/vegitation_pack/pine_b.dae" type="PackedScene" id=4]
 [ext_resource path="res://assets/vegitation_pack/pine_d.dae" type="PackedScene" id=5]
 [ext_resource path="res://assets/vegitation_pack/pine_e.dae" type="PackedScene" id=6]
+[ext_resource path="res://addons/simple-free-look-camera/camera.gd" type="Script" id=7]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -35,3 +36,8 @@ environment = ExtResource( 2 )
 [node name="Sun" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 1, 0, 0, 0, -0.819152, 0.573576, 0, -0.573576, -0.819152, 0.953721, 6.64664, -5.73269 )
 light_energy = 0.15
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.38382, 4.44039, 5.71009 )
+script = ExtResource( 7 )
+sensitivity = 1.0
