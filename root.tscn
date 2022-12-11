@@ -1,71 +1,92 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://fc1jwmw2i7m7"]
 
-[ext_resource path="res://assets/vegitation_pack/pine_a.tscn" type="PackedScene" id=1]
-[ext_resource path="res://default_env.tres" type="Environment" id=2]
-[ext_resource path="res://assets/vegitation_pack/pine_b.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/vegitation_pack/pine_c.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/vegitation_pack/pine_d.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/vegitation_pack/pine_e.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/simple-free-look-camera/camera.gd" type="Script" id=7]
-[ext_resource path="res://User.gd" type="Script" id=8]
+[ext_resource type="Script" path="res://User.gd" id="2_3mnto"]
+[ext_resource type="Script" path="res://addons/simple-free-look-camera/camera.gd" id="2_4ky5u"]
+[ext_resource type="PackedScene" uid="uid://cqwfpcxqnhs38" path="res://assets/vegitation-pack/pine_a.tscn" id="2_unnk2"]
+[ext_resource type="PackedScene" uid="uid://k6y1q2rbkjdy" path="res://assets/vegitation-pack/pine_b.tscn" id="3_l4vrp"]
+[ext_resource type="PackedScene" uid="uid://0y63xfmqnepk" path="res://assets/vegitation-pack/pine_c.tscn" id="5_st7h4"]
+[ext_resource type="PackedScene" uid="uid://nmhfk5g6gtwb" path="res://assets/vegitation-pack/pine_d.tscn" id="6_mffhk"]
+[ext_resource type="PackedScene" uid="uid://dnavqgis640ay" path="res://assets/vegitation-pack/pine_e.tscn" id="7_ehs27"]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q2ydn"]
+sky_top_color = Color(0.741176, 0.85098, 0.592157, 1)
+sky_horizon_color = Color(0.105882, 0.262745, 0.227451, 1)
+sky_curve = 0.166436
+ground_bottom_color = Color(0.105882, 0.262745, 0.227451, 1)
+ground_horizon_color = Color(0.105882, 0.262745, 0.227451, 1)
+ground_curve = 0.0399999
+sun_angle_max = 5.0
+sun_curve = 4.32597
 
-[sub_resource type="CylinderShape" id=4]
+[sub_resource type="Sky" id="Sky_f4xdv"]
+sky_material = SubResource("ProceduralSkyMaterial_q2ydn")
+
+[sub_resource type="Environment" id="Environment_4tky1"]
+background_mode = 2
+sky = SubResource("Sky_f4xdv")
+ambient_light_source = 2
+ambient_light_color = Color(0.105882, 0.262745, 0.227451, 1)
+fog_light_color = Color(0.105882, 0.262745, 0.227451, 1)
+fog_density = 0.1
+fog_sky_affect = 0.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bg5je"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t8ju0"]
 radius = 10.0
 
-[sub_resource type="CylinderShape" id=5]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rnr70"]
 radius = 20.0
 
-[sub_resource type="PlaneMesh" id=2]
-size = Vector2( 200, 200 )
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dcxg"]
+shading_mode = 0
+albedo_color = Color(0.105882, 0.262745, 0.227451, 1)
 
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.0980392, 0.0980392, 0.117647, 1 )
+[sub_resource type="PlaneMesh" id="PlaneMesh_30re5"]
+material = SubResource("StandardMaterial3D_8dcxg")
+size = Vector2(200, 200)
 
-[node name="root" type="Spatial"]
+[node name="root" type="Node3D"]
 
-[node name="user_stub" type="CSGSphere" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2515, 0.955766, -14.0439 )
-material = SubResource( 1 )
-script = ExtResource( 8 )
-
-[node name="NearArea" type="Area" parent="user_stub"]
-
-[node name="CollisionShape" type="CollisionShape" parent="user_stub/NearArea"]
-shape = SubResource( 4 )
-
-[node name="FarArea" type="Area" parent="user_stub"]
-
-[node name="CollisionShape" type="CollisionShape" parent="user_stub/FarArea"]
-shape = SubResource( 5 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 2 )
-
-[node name="Sun" type="DirectionalLight" parent="WorldEnvironment"]
-transform = Transform( 1, 0, 0, 0, -0.819152, 0.573576, 0, -0.573576, -0.819152, 0.953721, 6.64664, -5.73269 )
-light_energy = 0.15
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.38382, 4.44039, 5.71009 )
-script = ExtResource( 7 )
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.21482, 4.2713)
+script = ExtResource("2_4ky5u")
 sensitivity = 1.0
 
-[node name="pine_a" parent="." instance=ExtResource( 1 )]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4tky1")
+camera_attributes = SubResource("CameraAttributesPractical_bg5je")
 
-[node name="pine_b" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35323, 0, 0 )
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.451952, 0.892042, 0, -0.892042, 0.451952, 0, 6.80977, 4.45386)
 
-[node name="pine_c" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.94422, 0, 0 )
+[node name="User" type="CSGSphere3D" parent="."]
+script = ExtResource("2_3mnto")
 
-[node name="pine_d" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6292, 0, 0 )
+[node name="NearArea" type="Area3D" parent="User"]
 
-[node name="pine_e" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9308, 0, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="User/NearArea"]
+shape = SubResource("CylinderShape3D_t8ju0")
 
-[node name="ground" type="MeshInstance" parent="."]
-mesh = SubResource( 2 )
-material/0 = SubResource( 3 )
+[node name="FarArea" type="Area3D" parent="User"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="User/FarArea"]
+shape = SubResource("CylinderShape3D_rnr70")
+
+[node name="pine_a" parent="." instance=ExtResource("2_unnk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8294, 0, -6.1614)
+
+[node name="pine_b" parent="." instance=ExtResource("3_l4vrp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2479, 0, 0.92086)
+
+[node name="pine_c" parent="." instance=ExtResource("5_st7h4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2583, -1.90735e-06, 1.47003)
+
+[node name="pine_d" parent="." instance=ExtResource("6_mffhk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7906, 0, -9.05456)
+
+[node name="pine_e" parent="." instance=ExtResource("7_ehs27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46655, 0, 22.3697)
+
+[node name="ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_30re5")

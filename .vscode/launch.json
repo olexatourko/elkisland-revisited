@@ -5,6 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Godot Project",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "/home/oles/bin/godot4",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Attach to Godot",
+            "type": "coreclr",
+            "request": "attach",
+            "debugServer": 6007,
+            "processId": "${command:pickProcess}"
+        },
+        {
             "name": "GDScript Godot",
             "type": "godot",
             "request": "launch",

@@ -6,97 +6,82 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
+config_version=5
 
-_global_script_classes=[ {
-"base": "Camera",
-"class": "FreeLookCamera",
-"language": "GDScript",
+_global_script_classes=[{
+"base": "Camera3D",
+"class": &"FreeLookCamera",
+"language": &"GDScript",
 "path": "res://addons/simple-free-look-camera/camera.gd"
-} ]
+}]
 _global_script_class_icons={
 "FreeLookCamera": ""
 }
 
 [application]
 
-config/name="elkisland"
+config/name="Elkisland"
 run/main_scene="res://root.tscn"
-config/icon="res://icon.png"
+config/features=PackedStringArray("4.0", "Forward Plus")
+config/icon="res://icon.svg"
 
 [autoload]
 
 DebugDraw="*res://addons/zylann.debug_draw/debug_draw.gd"
 
-[global]
+[dotnet]
 
-sync=false
-
-[gui]
-
-common/drop_mouse_on_gui_input_disabled=true
+project/assembly_name="Elkisland"
 
 [input]
 
 gamepad_move_left={
 "deadzone": 0.2,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
- ]
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
+]
 }
 gamepad_move_right={
 "deadzone": 0.2,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
- ]
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+]
 }
 gamepad_move_down={
 "deadzone": 0.2,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":6,"axis_value":1.0,"script":null)
- ]
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":6,"axis_value":1.0,"script":null)
+]
 }
 gamepad_move_up={
 "deadzone": 0.2,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":7,"axis_value":1.0,"script":null)
- ]
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":7,"axis_value":1.0,"script":null)
+]
 }
 gamepad_move_forward={
 "deadzone": 0.2,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
- ]
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
+]
 }
 gamepad_move_backward={
 "deadzone": 0.2,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
- ]
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
+]
 }
 gamepad_look_left={
 "deadzone": 0.2,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":-1.0,"script":null)
- ]
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":-1.0,"script":null)
+]
 }
 gamepad_look_right={
 "deadzone": 0.2,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":1.0,"script":null)
- ]
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":1.0,"script":null)
+]
 }
 gamepad_look_up={
 "deadzone": 0.2,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":-1.0,"script":null)
- ]
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":-1.0,"script":null)
+]
 }
 gamepad_look_down={
 "deadzone": 0.2,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":1.0,"script":null)
- ]
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":1.0,"script":null)
+]
 }
-
-[mono]
-
-project/assembly_name="elkisland"
-
-[physics]
-
-common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"

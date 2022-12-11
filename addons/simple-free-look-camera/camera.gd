@@ -1,13 +1,12 @@
 # Based off of https://github.com/adamviola/simple-free-look-camera
-
-class_name FreeLookCamera extends Camera
+class_name FreeLookCamera extends Camera3D
 
 # Modifier keys' speed multiplier
 const SHIFT_MULTIPLIER = 2.5
 const ALT_MULTIPLIER = 1.0 / SHIFT_MULTIPLIER
 
-export(float, 0.0, 1.0) var sensitivity = 0.25
-export(bool) var use_mouse = false
+@export_range(0.0, 1.0) var sensitivity = 0.25
+@export var use_mouse = false
 
 # Mouse state
 var _mouse_position = Vector2(0.0, 0.0)
@@ -37,7 +36,7 @@ func _input(event):
 		# Receives mouse button input
 		if event is InputEventMouseButton:
 			match event.button_index:
-				BUTTON_RIGHT: # Only allows rotation if right click down
+				MOUSE_BUTTON_RIGHT: # Only allows rotation if right click down
 					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if event.pressed else Input.MOUSE_MODE_VISIBLE)
 
 	# Receives key input
@@ -64,9 +63,9 @@ func _process(delta):
 # Updates camera movement
 func _update_movement(delta):
 	# Computes desired direction from key states
-	_direction = Vector3(_d as float - _a as float, 
-						 _e as float - _q as float,
-						 _s as float - _w as float) * _vel_multiplier
+	_direction = Vector3(float(_d) - float(_a),
+		float(_e) - float(_q),
+		float(_s) - float(_w)) * _vel_multiplier
 
 	var move_velocity_horizontal = Input.get_vector("gamepad_move_left", "gamepad_move_right", "gamepad_move_forward", "gamepad_move_backward") * _vel_multiplier
 	var move_velocity_vertical = Input.get_axis("gamepad_move_down", "gamepad_move_up") * _vel_multiplier
@@ -109,5 +108,5 @@ func _update_mouselook():
 	# Prevents looking up/down too far
 	pitch = clamp(pitch, -90 - _total_pitch, 90 - _total_pitch)
 	_total_pitch += pitch
-	rotate_y(deg2rad(-yaw))
-	rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
+	rotate_y(deg_to_rad(-yaw))
+	rotate_object_local(Vector3(1,0,0), deg_to_rad(-pitch))

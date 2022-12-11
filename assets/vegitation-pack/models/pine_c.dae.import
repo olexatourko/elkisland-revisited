@@ -1,0 +1,41 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bma1oi22481fq"
+path="res://.godot/imported/pine_c.dae-2e64698d3360c92d2e0329bc5f9aba3b.scn"
+
+[deps]
+
+source_file="res://assets/vegitation-pack/models/pine_c.dae"
+dest_files=["res://.godot/imported/pine_c.dae-2e64698d3360c92d2e0329bc5f9aba3b.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+import_script/path=""
+_subresources={
+"materials": {
+"leaf": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/vegitation-pack/materials/leaf.tres"
+},
+"trunk": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/vegitation-pack/materials/trunk.tres"
+}
+}
+}
