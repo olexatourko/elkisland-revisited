@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/vegitation_pack/pine_a.tscn" type="PackedScene" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
@@ -7,14 +7,38 @@
 [ext_resource path="res://assets/vegitation_pack/pine_d.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/vegitation_pack/pine_e.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/simple-free-look-camera/camera.gd" type="Script" id=7]
+[ext_resource path="res://User.gd" type="Script" id=8]
 
 [sub_resource type="SpatialMaterial" id=1]
 
+[sub_resource type="CylinderShape" id=4]
+radius = 10.0
+
+[sub_resource type="CylinderShape" id=5]
+radius = 20.0
+
+[sub_resource type="PlaneMesh" id=2]
+size = Vector2( 200, 200 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.0980392, 0.0980392, 0.117647, 1 )
+
 [node name="root" type="Spatial"]
 
-[node name="CSGSphere" type="CSGSphere" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.40173, 0.960786, 0 )
+[node name="user_stub" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2515, 0.955766, -14.0439 )
 material = SubResource( 1 )
+script = ExtResource( 8 )
+
+[node name="NearArea" type="Area" parent="user_stub"]
+
+[node name="CollisionShape" type="CollisionShape" parent="user_stub/NearArea"]
+shape = SubResource( 4 )
+
+[node name="FarArea" type="Area" parent="user_stub"]
+
+[node name="CollisionShape" type="CollisionShape" parent="user_stub/FarArea"]
+shape = SubResource( 5 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 2 )
@@ -41,3 +65,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6292, 0, 0 )
 
 [node name="pine_e" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9308, 0, 0 )
+
+[node name="ground" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
