@@ -22,12 +22,13 @@ _global_script_class_icons={
 
 config/name="Elkisland"
 run/main_scene="res://root.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 DebugDraw="*res://addons/zylann.debug_draw/debug_draw.gd"
+WaypointPlanner="*res://WaypointPlanner.cs"
 
 [dotnet]
 

@@ -1,9 +1,0 @@
-/home/oles/projects/elkisland/.mono/temp/bin/Debug/elkisland.dll
-/home/oles/projects/elkisland/.mono/temp/bin/Debug/elkisland.pdb
-/home/oles/projects/elkisland/.mono/temp/obj/Debug/elkisland.csproj.AssemblyReference.cache
-/home/oles/projects/elkisland/.mono/temp/obj/Debug/elkisland.GeneratedMSBuildEditorConfig.editorconfig
-/home/oles/projects/elkisland/.mono/temp/obj/Debug/elkisland.AssemblyInfoInputs.cache
-/home/oles/projects/elkisland/.mono/temp/obj/Debug/elkisland.AssemblyInfo.cs
-/home/oles/projects/elkisland/.mono/temp/obj/Debug/elkisland.csproj.CoreCompileInputs.cache
-/home/oles/projects/elkisland/.mono/temp/obj/Debug/elkisland.dll
-/home/oles/projects/elkisland/.mono/temp/obj/Debug/elkisland.pdb
