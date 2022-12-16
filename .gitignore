@@ -1,2 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
+# Jupyter notebooks
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
