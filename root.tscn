@@ -73,20 +73,25 @@ shape = SubResource("CylinderShape3D_t8ju0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="User/FarArea"]
 shape = SubResource("CylinderShape3D_rnr70")
 
-[node name="pine_a" parent="." instance=ExtResource("2_unnk2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8294, 0, -6.1614)
-
-[node name="pine_b" parent="." instance=ExtResource("3_l4vrp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2479, 0, 0.92086)
-
-[node name="pine_c" parent="." instance=ExtResource("5_st7h4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2583, -1.90735e-06, 1.47003)
-
-[node name="pine_d" parent="." instance=ExtResource("6_mffhk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7906, 0, -9.05456)
-
-[node name="pine_e" parent="." instance=ExtResource("7_ehs27")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46655, 0, 22.3697)
-
 [node name="ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_30re5")
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="pine_a" parent="Trees" instance=ExtResource("2_unnk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8294, 0, -6.1614)
+
+[node name="pine_b" parent="Trees" instance=ExtResource("3_l4vrp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2479, 0, 0.92086)
+
+[node name="pine_c" parent="Trees" instance=ExtResource("5_st7h4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2583, -1.90735e-06, 1.47003)
+
+[node name="pine_d" parent="Trees" instance=ExtResource("6_mffhk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7906, 0, -9.05456)
+
+[node name="pine_e" parent="Trees" instance=ExtResource("7_ehs27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46655, 0, 22.3697)
+
+[node name="pine_e2" parent="Trees" instance=ExtResource("7_ehs27")]
+transform = Transform3D(0.392417, 0, -0.919787, 0, 1, 0, 0.919787, 0, 0.392417, -12.2321, 0, -2.76425)
