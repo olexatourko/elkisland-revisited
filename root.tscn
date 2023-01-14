@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://fc1jwmw2i7m7"]
+[gd_scene load_steps=17 format=3 uid="uid://fc1jwmw2i7m7"]
 
 [ext_resource type="Script" path="res://User.gd" id="2_3mnto"]
 [ext_resource type="Script" path="res://addons/simple-free-look-camera/camera.gd" id="2_4ky5u"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://0y63xfmqnepk" path="res://assets/vegitation-pack/pine_c.tscn" id="5_st7h4"]
 [ext_resource type="PackedScene" uid="uid://nmhfk5g6gtwb" path="res://assets/vegitation-pack/pine_d.tscn" id="6_mffhk"]
 [ext_resource type="PackedScene" uid="uid://dnavqgis640ay" path="res://assets/vegitation-pack/pine_e.tscn" id="7_ehs27"]
+[ext_resource type="Script" path="res://WaypointPlanner.cs" id="8_fh4ms"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q2ydn"]
 sky_top_color = Color(0.741176, 0.85098, 0.592157, 1)
@@ -95,3 +96,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46655, 0, 22.3697)
 
 [node name="pine_e2" parent="Trees" instance=ExtResource("7_ehs27")]
 transform = Transform3D(0.392417, 0, -0.919787, 0, 1, 0, 0.919787, 0, 0.392417, -12.2321, 0, -2.76425)
+
+[node name="WaypointPlanner" type="Node" parent="."]
+script = ExtResource("8_fh4ms")
