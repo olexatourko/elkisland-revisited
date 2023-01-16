@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://0y63xfmqnepk" path="res://assets/vegitation-pack/pine_c.tscn" id="5_st7h4"]
 [ext_resource type="PackedScene" uid="uid://nmhfk5g6gtwb" path="res://assets/vegitation-pack/pine_d.tscn" id="6_mffhk"]
 [ext_resource type="PackedScene" uid="uid://dnavqgis640ay" path="res://assets/vegitation-pack/pine_e.tscn" id="7_ehs27"]
-[ext_resource type="Script" path="res://WaypointPlanner.cs" id="8_fh4ms"]
+[ext_resource type="Script" path="res://waypoints/Driver.cs" id="8_w8xbb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q2ydn"]
 sky_top_color = Color(0.741176, 0.85098, 0.592157, 1)
@@ -98,4 +98,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46655, 0, 22.3697)
 transform = Transform3D(0.392417, 0, -0.919787, 0, 1, 0, 0.919787, 0, 0.392417, -12.2321, 0, -2.76425)
 
 [node name="WaypointPlanner" type="Node" parent="."]
-script = ExtResource("8_fh4ms")
+script = ExtResource("8_w8xbb")
