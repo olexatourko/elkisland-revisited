@@ -28,4 +28,4 @@ func _process(_delta):
 	for key in far_trees:
 		if key in near_trees:
 			continue
-		DebugDraw.draw_line_3d(self.global_transform.origin, far_trees.get(key).global_transform.origin, Color(0, 1, 0))
+		DebugDraw.draw_line_3d(self.global_transform.origin, far_trees.get(key).global_transform.origin, Color(0.5, 0.5, 0.5))

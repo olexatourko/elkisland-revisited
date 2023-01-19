@@ -1,8 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ch57iquei8qxy"]
-
-[ext_resource type="Script" path="res://steeringbehaviours/SteeringLocation.cs" id="1_ata0s"]
-
-[resource]
-script = ExtResource("1_ata0s")
-Position = Vector3(0, 0, 0)
-Orientation = 0.0

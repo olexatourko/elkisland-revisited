@@ -28,8 +28,8 @@ namespace WaypointPlanning {
                     );
                 }
             }
-            IEnumerable<Edge> graph = WaypointPlanner.CreateGraph(waypoints);
-            DrawWaypointGraph(graph);
+            IEnumerable<Edge> edges = WaypointPlanner.CreateGraph(waypoints);
+            DrawWaypointGraph(edges);
         }
 
         public void DrawWaypointGraph(IEnumerable<Edge> edges) {
