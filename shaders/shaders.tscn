@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://pxdu2ip3btt0"]
+
+[ext_resource type="Material" uid="uid://camw1omd6de4f" path="res://shaders/tutorialShaders.tres" id="1_2okp3"]
+[ext_resource type="Material" uid="uid://6lp6acrpbiug" path="res://shaders/shaders.tres" id="1_dbfwc"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mgg7p"]
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wt6d1"]
+rings = 16
+
+[node name="shaders" type="Node"]
+
+[node name="PlaneMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_mgg7p")
+surface_material_override/0 = ExtResource("1_2okp3")
+
+[node name="CapsuleMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28643, 0, 0)
+material_override = ExtResource("1_dbfwc")
+mesh = SubResource("CapsuleMesh_wt6d1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.866827, 0, -0.498609, 0, 1, 0, 0.498609, 0, 0.866827, -3.77624, 0, 2.60279)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.27944, 1.15085, 1.3255)
+light_energy = 2.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1024, 1024)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(0.866827, 0, -0.498609, 0, 1, 0, 0.498609, 0, 0.866827, -3.77624, 0, 2.60279)

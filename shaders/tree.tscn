@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkboytcaauetd"]
+
+[ext_resource type="PackedScene" uid="uid://vsy7u7nwp1q4" path="res://assets/olexa/tree.dae" id="1_vnniu"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="tree" parent="." instance=ExtResource("1_vnniu")]

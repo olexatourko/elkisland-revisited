@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://camw1omd6de4f"]
+
+[ext_resource type="Shader" path="res://shaders/tutorial.gdshader" id="1_vps78"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qsovt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bacdh"]
+seamless = true
+noise = SubResource("FastNoiseLite_qsovt")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lhep1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ibi4x"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_lhep1")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vps78")
+shader_parameter/height_scale = null
+shader_parameter/noise = SubResource("NoiseTexture2D_bacdh")
+shader_parameter/normalMap = SubResource("NoiseTexture2D_ibi4x")
