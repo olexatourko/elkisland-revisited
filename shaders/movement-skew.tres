@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dja62rwrxyomj"]
+
+[ext_resource type="Shader" path="res://shaders/movement-skew.gdshader" id="1_oxunn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_oxunn")
+shader_parameter/velocity = Vector3(0, 0, 0)
+shader_parameter/max_velocity = 1.0
+shader_parameter/stretch_factor = 0.5

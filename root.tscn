@@ -180,7 +180,7 @@ transform = Transform3D(-0.266677, 0, -0.754244, 0, 0.8, 0, 0.754244, 0, -0.2666
 script = ExtResource("9_oxvlp")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="Shadow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.53537, 1, 16.156)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Shadow/CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.635743, 0)

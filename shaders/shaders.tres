@@ -11,4 +11,7 @@ noise = SubResource("FastNoiseLite_sbt86")
 [resource]
 render_priority = 0
 shader = ExtResource("1_vps78")
+shader_parameter/velocity = Vector3(0, 0, 0)
+shader_parameter/max_velocity = 1.0
+shader_parameter/stretch_factor = 0.5
 shader_parameter/noise = SubResource("NoiseTexture2D_s0qa5")

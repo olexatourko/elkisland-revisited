@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://pxdu2ip3btt0"]
+[gd_scene load_steps=7 format=3 uid="uid://pxdu2ip3btt0"]
 
 [ext_resource type="Material" uid="uid://camw1omd6de4f" path="res://shaders/tutorialShaders.tres" id="1_2okp3"]
 [ext_resource type="Material" uid="uid://6lp6acrpbiug" path="res://shaders/shaders.tres" id="1_dbfwc"]
+[ext_resource type="Material" uid="uid://dja62rwrxyomj" path="res://shaders/movement-skew.tres" id="3_kuctr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mgg7p"]
 subdivide_width = 32
 subdivide_depth = 32
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wt6d1"]
+rings = 16
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_57bk2"]
 rings = 16
 
 [node name="shaders" type="Node"]
@@ -34,3 +38,8 @@ size = Vector2i(1024, 1024)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(0.866827, 0, -0.498609, 0, 1, 0, 0.498609, 0, 0.866827, -3.77624, 0, 2.60279)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.34094, 0, 0)
+mesh = SubResource("CapsuleMesh_57bk2")
+surface_material_override/0 = ExtResource("3_kuctr")

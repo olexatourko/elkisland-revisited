@@ -8,13 +8,13 @@ namespace Shadow {
     public partial class UserControlledShadow : Node {
         protected WaypointPlanner WaypointPlanner = new WaypointPlanner();
         protected CharacterBody3DAgent Agent;
+        protected ShaderMaterial ShaderMaterial;
         protected SeekBehaviour SeekBehaviour;
         protected TargetAcceleration Acceleration = new TargetAcceleration();
         protected Dictionary<Waypoint, HashSet<Waypoint>> AdjacencyList;
         private Waypoint _currentTarget;
         private List<Waypoint> _candidateTargets;
         private Waypoint _currentCandidateTarget;
-
         // TODO collisions are in effect this large value temporarily accounts for them. Change this.
         protected const float TargetRangeThreshold = 1;
         protected const float CommonYPosition = 1;
@@ -44,7 +44,9 @@ namespace Shadow {
                 return (CurrentTarget.Position - agent2DPosition).Length() < TargetRangeThreshold;
             }
         }
+        // For debug drawing
         public ImmediateMesh ImmediateMesh;
+        private IEnumerable<Edge> _edges;
 
         public override void _Ready()
         {
@@ -87,8 +89,13 @@ namespace Shadow {
             material.ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded;
             material.VertexColorUseAsAlbedo = true;
             meshInstance3D.MaterialOverride = material;
+            _edges = edges;
 
-            DrawWaypointGraph(edges);
+            // Get the shader material
+            Material bodyMaterial = (Agent.Body.FindChild("MeshInstance3D") as MeshInstance3D).GetSurfaceOverrideMaterial(0);
+            if (bodyMaterial is ShaderMaterial) {
+                ShaderMaterial = bodyMaterial as ShaderMaterial;
+            }
         }
 
         public override void _Input(InputEvent @event) {
@@ -112,15 +119,22 @@ namespace Shadow {
                 SeekBehaviour.CalculateSteering(Acceleration);
                 Agent.ApplySteering(Acceleration, (float) delta);
             } else {
+                
+                Acceleration.Linear = Vector3.Zero;
+                DrawWaypointGraph(true);
                 DrawAdjacentEdges();
+            }
+
+            if (ShaderMaterial != null) {
+                ShaderMaterial.SetShaderParameter("velocity", Acceleration.Linear);
             }
         }
 
-        public void DrawWaypointGraph(IEnumerable<Edge> edges) {
-            ImmediateMesh.ClearSurfaces();
+        public void DrawWaypointGraph(bool clearSurfaces = false) {
+            if (clearSurfaces) ImmediateMesh.ClearSurfaces();
             ImmediateMesh.SurfaceBegin(Mesh.PrimitiveType.Lines);
-            foreach (var edge in edges) {
-                ImmediateMesh.SurfaceSetColor(Colors.Red);
+            foreach (var edge in _edges) {
+                ImmediateMesh.SurfaceSetColor(Colors.DarkGray);
                 ImmediateMesh.SurfaceAddVertex(new Vector3(
                     edge.WaypointA.Position.x,
                     CommonYPosition,
@@ -135,8 +149,8 @@ namespace Shadow {
             ImmediateMesh.SurfaceEnd();
         }
 
-        public void DrawAdjacentEdges() {
-            ImmediateMesh.ClearSurfaces();
+        public void DrawAdjacentEdges(bool clearSurfaces = false) {
+            if (clearSurfaces) ImmediateMesh.ClearSurfaces();
             ImmediateMesh.SurfaceBegin(Mesh.PrimitiveType.Lines);
             foreach (var adjacentWaypoint in AdjacencyList[CurrentTarget]) {
                 if (adjacentWaypoint == _currentCandidateTarget) ImmediateMesh.SurfaceSetColor(Colors.Yellow);
