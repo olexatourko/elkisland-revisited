@@ -1,4 +1,0 @@
-[gd_scene load_steps=3 format=3]
-
-[ext_resource type="PackedScene" uid="uid://bjv87ufya178n" path="res://assets/vegitation-pack/models/pine_a.DAE" id="1_yqkbc"]
-[ext_resource type="Script" path="res://addons/simple-free-look-camera/camera.gd" id="2_4ky5u"]

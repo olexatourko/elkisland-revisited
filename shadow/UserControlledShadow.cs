@@ -6,6 +6,8 @@ using SteeringBehaviours;
 
 namespace Shadow {
     public partial class UserControlledShadow : Node {
+        [Export]
+        public bool AcceptInput = true;
         protected WaypointPlanner WaypointPlanner = new WaypointPlanner();
         protected CharacterBody3DAgent Agent;
         protected ShaderMaterial ShaderMaterial;
@@ -99,6 +101,7 @@ namespace Shadow {
         }
 
         public override void _Input(InputEvent @event) {
+            if (!AcceptInput) return;
             if (!IsAtCurrentTarget || _currentCandidateTarget == null) return;
             int currentCandidateTargetIdx = _candidateTargets.IndexOf(_currentCandidateTarget);
             if (@event.IsActionPressed("gamepad_left_bumper")) {
