@@ -29,6 +29,8 @@ public partial class User : Node
             } else if (value == ControlMode.UserCharacter) {
                 FreeCamera.Set("accept_input", false);
                 UserCharacter.AcceptInput = true;
+                Transform3D CameraMatrix = (FreeCamera as Camera3D).GetCameraTransform();
+                UserCharacter.MovementTransformMatrix = Transform3D.Identity.Rotated(Vector3.Up, CameraMatrix.basis.GetEuler().y);
             }
         }
     }
@@ -38,8 +40,7 @@ public partial class User : Node
         CurrentControlMode = ControlMode.FreeCamera;
 	}
 
-    public override void _Input(InputEvent @event)
-    {
+    public override void _Input(InputEvent @event) {
         if (@event.IsActionPressed("gamepad_y")) {
             int controlModeIdx = _controlModes.IndexOf(CurrentControlMode);
             controlModeIdx += 1;
