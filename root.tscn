@@ -103,7 +103,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.9635, 0)
 curve = SubResource("Curve3D_5orwv")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.0652201, 0.276945, -0.958501, 0.185618, 0.940393, 0.284352, 0.980299, -0.196488, 0.0099281, 17.0522, 0.280551, 4.36905)
+transform = Transform3D(0.0652201, 0.276945, -0.958501, 0.185618, 0.940393, 0.284352, 0.980298, -0.196488, 0.0099281, 17.0522, 0.280551, 4.36905)
 progress = 164.905
 script = ExtResource("2_hxl23")
 Speed = 20.0
