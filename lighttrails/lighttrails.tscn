@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://4mvtd3uqj8c7"]
+
+[sub_resource type="Curve3D" id="Curve3D_1v1nb"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.00652051, 0, -0.0010963, -2.02094, 0, -0.00541818, 2.02094, 0, 0.00541818, 2.00037, 0, 1.99276, 0, 0, 1.97218, 0, 0, -1.97218, 4.01048, 0, -0.0119324, 2, 0, 0, -2, 0, 0, 2.00037, 0, -1.97328, 0, 0, 0, 0, 0, 0, 0.0173571, 0, -0.998023),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="SphereMesh" id="SphereMesh_tyaax"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5ot7"]
+shading_mode = 0
+grow_amount = 0.111
+
+[node name="lighttrails" type="Node3D"]
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_1v1nb")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.70699, 0, 0.706988, 0, 1, 0, -0.706988, 0, 0.70699, 0.00652051, 0, -0.0010963)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Path3D/PathFollow3D"]
+mesh = SubResource("SphereMesh_tyaax")
+material = SubResource("StandardMaterial3D_x5ot7")

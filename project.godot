@@ -8,16 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "Camera3D",
-"class": &"FreeLookCamera",
-"language": &"GDScript",
-"path": "res://addons/simple-free-look-camera/camera.gd"
-}]
-_global_script_class_icons={
-"FreeLookCamera": ""
-}
-
 [application]
 
 config/name="Elkisland"

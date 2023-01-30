@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm0s23vm4mbyd"]
+
+[ext_resource type="Material" uid="uid://bd6pnk3vbind2" path="res://godrays/volumetric_scatter_ray.tres" id="2_8mcb7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywnlt"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_1o4cr"]
+size = Vector2(2, 2)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.982367, 0, -0.0252907)
+material_override = SubResource("ShaderMaterial_ywnlt")
+size = Vector3(1, 1, 1.49324)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999973, -0.00731286, 0, 0.00731286, 0.999973, 1.18019, 0.597428, 1.30312)
+material_override = SubResource("ShaderMaterial_ywnlt")
+size = Vector3(1, 2.14198, 0.265386)
+
+[node name="VolumetricScatterRay" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_8mcb7")
+mesh = SubResource("QuadMesh_1o4cr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.69155)
+current = true

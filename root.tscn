@@ -1,11 +1,30 @@
-[gd_scene load_steps=19 format=3 uid="uid://ba10yg6d3kl5m"]
+[gd_scene load_steps=25 format=3 uid="uid://ba10yg6d3kl5m"]
 
 [ext_resource type="Script" path="res://addons/simple-free-look-camera/camera.gd" id="2_4ky5u"]
 [ext_resource type="Script" path="res://user/UserCharacter.cs" id="2_3662m"]
 [ext_resource type="Script" path="res://user/User.cs" id="2_b5ve6"]
+[ext_resource type="Script" path="res://lighttrails/PathFollowerDriver.cs" id="2_hxl23"]
+[ext_resource type="PackedScene" uid="uid://bqndcchyb8efh" path="res://godrays/volumetric_scatter_ray.tscn" id="3_pdjmk"]
 [ext_resource type="PackedScene" uid="uid://e3l71n3g6pee" path="res://assets/olexa/tree.glb" id="3_v6rai"]
 [ext_resource type="Material" uid="uid://6lp6acrpbiug" path="res://shaders/shaders.tres" id="9_btddq"]
 [ext_resource type="Script" path="res://shadow/UserControlledShadow.cs" id="9_oxvlp"]
+
+[sub_resource type="Curve3D" id="Curve3D_5orwv"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -19.5367, 0, 3.39373, -10.4597, 0, 8.08789, 10.4597, 0, -8.08789, -7.55884, -0.465252, -9.22657, -8.77007, 0, 7.56041, 8.77007, 0, -7.56041, 18.4249, -3.12103, -23.4768, -13.0039, 0, -0.100807, 13.0039, 0, 0.100807, 36.4691, 0, -46.4568, -0.907242, 0, -9.67732, 0.907242, 0, 9.67732, 54.0093, 2.57545, -29.8736, 9.27411, 0, -3.7298, -9.27411, 0, 3.7298, 37.9812, 1.59444, 1.68979, 5.04028, 0, -0.100803, -5.04028, 0, 0.100803, 19.0298, 0, 4.34915, 4.43544, 0, -6.04832, -4.43544, 0, 6.04832, 8.14282, 4.95676, 9.86165, 8.36685, 0, -1.10886, -8.36685, 0, 1.10886, -1.93774, 8.73885, 28.6787, 6.35075, 0, 8.26605, -6.35075, 0, -8.26605, -19.8811, 4.91007, 21.3947, 0, 0, 0, 0, 0, 0, -19.5367, 0, 3.39373),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 11
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlc8u"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 8.0
+grow_amount = -0.286
+
+[sub_resource type="FogMaterial" id="FogMaterial_m45pw"]
+density = 0.05
+albedo = Color(0.227451, 0.835294, 0.784314, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q2ydn"]
 sky_top_color = Color(0.741176, 0.85098, 0.592157, 1)
@@ -25,14 +44,22 @@ background_mode = 2
 sky = SubResource("Sky_f4xdv")
 ambient_light_source = 2
 ambient_light_color = Color(0.105882, 0.262745, 0.227451, 1)
-fog_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+glow_enabled = true
+glow_hdr_threshold = 0.25
 fog_light_color = Color(0.105882, 0.262745, 0.227451, 1)
 fog_sky_affect = 0.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.015
 volumetric_fog_albedo = Color(0.227451, 0.835294, 0.784314, 1)
+adjustment_contrast = 3.87
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bg5je"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_xbsjw"]
+density = 0.05
+albedo = Color(0.227451, 0.835294, 0.784314, 1)
+height_falloff = 0.450624
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_t8ju0"]
 radius = 10.0
@@ -62,13 +89,47 @@ points = PackedVector3Array(-0.5, -0.5, 0, -0.497651, -0.5, -0.0490407, -0.49246
 [node name="root" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 20, 20)
+transform = Transform3D(1, 0, 0, 0, 0.996607, -0.0823038, 0, 0.0823038, 0.996607, 0, 3.81157, 20)
 script = ExtResource("2_4ky5u")
 sensitivity = 1.0
+
+[node name="VolumetricScatterRay" parent="." instance=ExtResource("3_pdjmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.9635, 0)
+extra_cull_margin = 16384.0
+skeleton = NodePath("../Path3D")
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.9635, 0)
+curve = SubResource("Curve3D_5orwv")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.0652201, 0.276945, -0.958501, 0.185618, 0.940393, 0.284352, 0.980299, -0.196488, 0.0099281, 17.0522, 0.280551, 4.36905)
+progress = 164.905
+script = ExtResource("2_hxl23")
+Speed = 20.0
+
+[node name="GlowReference" type="CSGSphere3D" parent="Path3D/PathFollow3D"]
+radius = 0.25
+material = SubResource("StandardMaterial3D_xlc8u")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Path3D/PathFollow3D/GlowReference"]
+light_volumetric_fog_energy = 10.0
+shadow_enabled = true
+
+[node name="FogVolume" type="FogVolume" parent="Path3D/PathFollow3D/GlowReference"]
+extents = Vector3(2, 2, 2)
+shape = 0
+material = SubResource("FogMaterial_m45pw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4tky1")
 camera_attributes = SubResource("CameraAttributesPractical_bg5je")
+
+[node name="GroundFog" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+visible = false
+extents = Vector3(100, 10, 100)
+material = SubResource("FogMaterial_xbsjw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.451952, 0.892042, 0, -0.892042, 0.451952, 0, 6.80977, 4.45386)

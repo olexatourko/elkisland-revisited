@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bd6pnk3vbind2"]
+
+[ext_resource type="Shader" path="res://godrays/volumetric_scatter_ray.gdshader" id="1_vmxx1"]
+
+[resource]
+render_priority = 10
+shader = ExtResource("1_vmxx1")
+shader_parameter/light_color = Color(0, 0.94902, 0.952941, 1)
+shader_parameter/light_pos = Vector3(17.052, 10.281, 4.369)
+shader_parameter/size = 1.0
+shader_parameter/light_type = 1
+shader_parameter/exposure = 1.0
+shader_parameter/attenuate = 1.25
+shader_parameter/num_samples = 32
+shader_parameter/dither = 1.0
+shader_parameter/use_pcf5 = true
