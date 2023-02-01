@@ -7,7 +7,7 @@ uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 uniform vec4 light_color: source_color;
-uniform vec3 light_pos;
+uniform vec3 light_position;
 uniform float size = 1.0;
 uniform int light_type = 0; //0 = directional, 1 = omni
 
@@ -28,7 +28,7 @@ varying float attenuate_size;
 
 void vertex() {
 	// Convert light position from world space to view space
-	light_screen_pos = VIEW_MATRIX * vec4(light_pos, float(light_type));	
+	light_screen_pos = VIEW_MATRIX * vec4(light_position, float(light_type));	
 	// Convert light position from view space to clip space
 	light_screen_pos = PROJECTION_MATRIX * light_screen_pos;
 	// Perspective divisiontg
@@ -37,7 +37,7 @@ void vertex() {
 	// Adjust XY to be at bottom-left of screen
 	// https://learnopengl.com/img/getting-started/coordinate_systems.png
 	light_screen_pos.xy = light_screen_pos.xy * 0.5 + 0.5;
-	light_screen_pos.z = -(VIEW_MATRIX * vec4(light_pos, float(light_type))).z;
+	light_screen_pos.z = -(VIEW_MATRIX * vec4(light_position, float(light_type))).z;
 		
 	// Fullscreen quad
 	POSITION = vec4(VERTEX, 1.0);
@@ -99,14 +99,14 @@ float get_luminance(sampler2D depth, vec3 ray_o, vec3 ray_d, vec2 uv, vec2 tex_s
 		luminance = smoothstep(
 			1.0,
 			0.0,
-			acos(dot(light_pos, ray_d)) / HALF_PI / size
+			acos(dot(light_position, ray_d)) / HALF_PI / size
 		);
 	} else if(light_type == 1) {
 		luminance = smoothstep(
 			1.0,
 			0.0,
 			// Angle between the camera->light vector and pixel->light vector
-			acos(dot(normalize(light_pos - ray_o), ray_d)) / HALF_PI / attenuate_size 
+			acos(dot(normalize(light_position - ray_o), ray_d)) / HALF_PI / attenuate_size 
 		);
 	}
 	
@@ -174,7 +174,7 @@ void fragment() {
 	}
 	light = light / float(num_samples);
 	
-	vec3 light_dir = light_type == 0 ? light_pos : normalize(light_pos - camera_pos);
+	vec3 light_dir = light_type == 0 ? light_position : normalize(light_position - camera_pos);
 	float facing_weight = dot(uv_to_ray(vec2(0.5), VIEW_MATRIX), light_dir);
 	
 	ALBEDO = variable_smoothstep(light, attenuate) * exposure * light_color.rgb * max(facing_weight * facing_weight, 0.0);

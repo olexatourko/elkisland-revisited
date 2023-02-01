@@ -93,20 +93,20 @@ transform = Transform3D(1, 0, 0, 0, 0.996607, -0.0823038, 0, 0.0823038, 0.996607
 script = ExtResource("2_4ky5u")
 sensitivity = 1.0
 
-[node name="VolumetricScatterRay" parent="." instance=ExtResource("3_pdjmk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.9635, 0)
-extra_cull_margin = 16384.0
-skeleton = NodePath("../Path3D")
-
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.9635, 0)
 curve = SubResource("Curve3D_5orwv")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.0652201, 0.276945, -0.958501, 0.185618, 0.940393, 0.284352, 0.980298, -0.196488, 0.0099281, 17.0522, 0.280551, 4.36905)
+transform = Transform3D(0.0652201, 0.276945, -0.958501, 0.185618, 0.940393, 0.284352, 0.980298, -0.196488, 0.0099281, 14.9699, 0.280551, 4.36905)
 progress = 164.905
 script = ExtResource("2_hxl23")
-Speed = 20.0
+Speed = 10.0
+
+[node name="VolumetricScatterRay" parent="Path3D/PathFollow3D" instance=ExtResource("3_pdjmk")]
+transform = Transform3D(1.00016, 0, 0, 0, 1.00018, 0, 0, 0, 1.00016, 0, 0, 0)
+extra_cull_margin = 16384.0
+skeleton = NodePath("../..")
 
 [node name="GlowReference" type="CSGSphere3D" parent="Path3D/PathFollow3D"]
 radius = 0.25

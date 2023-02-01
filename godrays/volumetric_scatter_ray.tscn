@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqndcchyb8efh"]
+[gd_scene load_steps=4 format=3 uid="uid://bqndcchyb8efh"]
 
 [ext_resource type="Material" uid="uid://bd6pnk3vbind2" path="res://godrays/volumetric_scatter_ray.tres" id="1_ye8qi"]
+[ext_resource type="Script" path="res://godrays/VolumetricScatterLight.cs" id="2_5eclk"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_1o4cr"]
 size = Vector2(2, 2)
@@ -8,3 +9,4 @@ size = Vector2(2, 2)
 [node name="VolumetricScatterRay" type="MeshInstance3D"]
 material_override = ExtResource("1_ye8qi")
 mesh = SubResource("QuadMesh_1o4cr")
+script = ExtResource("2_5eclk")
